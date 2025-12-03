@@ -4,29 +4,3 @@ onBoot = "pip install -r requirements.txt"
 [env]
 PYTHON_VERSION = "3.11.1"
 PYTHONUNBUFFERED = "1"
-
-[nix]
-channel = "stable-23_05"
-
-[packager]
-language = "python311"
-
-[packager.features]
-packageSearch = true
-guessImports = true
-
-[languages.python]
-pattern = "\*_/_.py"
-
-[languages.python.languageServer]
-start = "pylsp"
-
-[unitTest]
-language = "python3"
-
-[debugger]
-support = true
-
-[debugger.interactive]
-transport = "localhost:0"
-startCommand = ["dap-python", "main.py"]
