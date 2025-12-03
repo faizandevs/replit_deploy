@@ -1,26 +1,32 @@
-This should cover 3.11.1 or the closest patch version available.
+.replit file configuration
+
+--- 1. PYTHON VERSION CONFIGURATION ---
+
+We explicitly request Python 3.11. Replit will use the latest available
+
+patch version (like 3.11.1) for this module.
 
 modules = ["python-3.11"]
 
---- 2. SET ENTRYPOINT AND RUN COMMAND ---
+--- 2. RUN COMMAND (For the 'Run' Button) ---
 
-The 'run' command specifies how the application should be started
+This command starts the FastAPI server using Uvicorn.
 
-when you click the 'Run' button in the Replit interface.
+We bind to 0.0.0.0 and use a fixed port (8080) which is reliably exposed
+
+by Replit for the development environment.
 
 run = "uvicorn main:app --host 0.0.0.0 --port 8080"
 
-Note on the run command:
+Note on the command parameters:
 
-- uvicorn: The ASGI server.
+- --host 0.0.0.0: MANDATORY to bind to all interfaces for Replit's web view.
 
-- main:app: Refers to the 'app' object inside the 'main.py' file.
+- --port 8080: This is a standard port Replit's development environment exposes.
 
-- --host 0.0.0.0: Binds to all interfaces, required for Replit.
+For a final, public Autoscale Deployment, Replit automatically handles
 
-- --port 8080: Replit automatically exposes port 8080 (or $PORT)
-
-for deployments, but 8080 is often reliable for the local 'Run' button.
+the port using its $PORT environment variable, regardless of this setting.
 
 [nix]
 channel = "stable-23_05"
