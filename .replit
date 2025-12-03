@@ -1,0 +1,26 @@
+This should cover 3.11.1 or the closest patch version available.
+
+modules = ["python-3.11"]
+
+--- 2. SET ENTRYPOINT AND RUN COMMAND ---
+
+The 'run' command specifies how the application should be started
+
+when you click the 'Run' button in the Replit interface.
+
+run = "uvicorn main:app --host 0.0.0.0 --port 8080"
+
+Note on the run command:
+
+- uvicorn: The ASGI server.
+
+- main:app: Refers to the 'app' object inside the 'main.py' file.
+
+- --host 0.0.0.0: Binds to all interfaces, required for Replit.
+
+- --port 8080: Replit automatically exposes port 8080 (or $PORT)
+
+for deployments, but 8080 is often reliable for the local 'Run' button.
+
+[nix]
+channel = "stable-23_05"
