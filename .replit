@@ -1,32 +1,85 @@
-.replit file configuration
+run = "uvicorn main:app --host 0.0.0.0 --port 3000"
+onBoot = "pip install -r requirements.txt"
 
---- 1. PYTHON VERSION CONFIGURATION ---
-
-We explicitly request Python 3.11. Replit will use the latest available
-
-patch version (like 3.11.1) for this module.
-
-modules = ["python-3.11"]
-
---- 2. RUN COMMAND (For the 'Run' Button) ---
-
-This command starts the FastAPI server using Uvicorn.
-
-We bind to 0.0.0.0 and use a fixed port (8080) which is reliably exposed
-
-by Replit for the development environment.
-
-run = "uvicorn main:app --host 0.0.0.0 --port 8080"
-
-Note on the command parameters:
-
-- --host 0.0.0.0: MANDATORY to bind to all interfaces for Replit's web view.
-
-- --port 8080: This is a standard port Replit's development environment exposes.
-
-For a final, public Autoscale Deployment, Replit automatically handles
-
-the port using its $PORT environment variable, regardless of this setting.
+[env]
+PYTHON_VERSION = "3.11.1"
+PYTHONUNBUFFERED = "1"
 
 [nix]
 channel = "stable-23_05"
+
+[packager]
+language = "python311"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+
+[languages.python]
+pattern = "\*_/_.py"
+
+[languages.python.languageServer]
+start = "pylsp"
+
+[unitTest]
+language = "python3"
+
+[debugger]
+support = true
+
+[debugger.interactive]
+transport = "localhost:0"
+startCommand = ["dap-python", "main.py"]
+
+[gitignore]
+
+# Python
+
+**pycache**/
+_.py[cod]
+_$py.class
+_.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+_.egg-info/
+.installed.cfg
+\*.egg
+
+# Environment
+
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+
+.vscode/
+.idea/
+_.swp
+_.swo
+\*~
+
+# OS
+
+.DS_Store
+Thumbs.db
+
+# Replit
+
+.replit
+replit.nix
